@@ -12,15 +12,15 @@ module.exports.newUser = async (req, res) => {
 
     let allQuestions = await Question.find({});
     let level1 = allQuestions.filter((el) => el.levelTag == "level1");
-    l1.sort(() => Math.random() - 0.5);
+    level1.sort(() => Math.random() - 0.5);
     let level2 = allQuestions.filter((el) => el.levelTag == "level2");
-    l2.sort(() => Math.random() - 0.5);
+    level2.sort(() => Math.random() - 0.5);
     let level3 = allQuestions.filter((el) => el.levelTag == "level3");
-    l3.sort(() => Math.random() - 0.5);
+    level3.sort(() => Math.random() - 0.5);
     let level4 = allQuestions.filter((el) => el.levelTag == "level4");
-    l4.sort(() => Math.random() - 0.5);
+    level4.sort(() => Math.random() - 0.5);
     let level5 = allQuestions.filter((el) => el.levelTag == "level5");
-    l5.sort(() => Math.random() - 0.5);
+    level5.sort(() => Math.random() - 0.5);
     let test = {
       level1: [level1[0], level1[1]],
       level2: [level2[0], level2[1]],
