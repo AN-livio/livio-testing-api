@@ -21,13 +21,18 @@ module.exports.newUser = async (req, res) => {
     level4.sort(() => Math.random() - 0.5);
     let level5 = allQuestions.filter((el) => el.levelTag == "level5");
     level5.sort(() => Math.random() - 0.5);
-    let test = {
-      level1: [level1[0], level1[1]],
-      level2: [level2[0], level2[1]],
-      level3: [level3[0], level3[1]],
-      level4: [level4[0], level4[1]],
-      level5: [level5[0], level5[1]],
-    };
+    let test = [
+      level1[0],
+      level1[1],
+      level2[0],
+      level2[1],
+      level3[0],
+      level3[1],
+      level4[0],
+      level4[1],
+      level5[0],
+      level5[1],
+    ];
     res.status(201).send({ user, test });
   } catch (error) {
     res.status(400).send(error);
