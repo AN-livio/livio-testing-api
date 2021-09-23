@@ -15,6 +15,6 @@ router.get("/scorecard", auth, getScorecard);
 router.post("/logout", auth, logout);
 router.post("/addquestion", auth, addQuestion);
 router.post("/deletequestion", auth, deleteQuestion);
-router.post("/getquestions", auth, getAllQuestions);
+router.get("/getquestions", auth, getAllQuestions);
 
 module.exports = router;
