@@ -25,7 +25,7 @@ module.exports.logout = async (req, res) => {
   try {
     req.user.token = null;
     await req.user.save();
-    res.send();
+    res.status(200).send();
   } catch (error) {
     res.status(500).send(error);
   }
