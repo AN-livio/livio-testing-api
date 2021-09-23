@@ -5,6 +5,7 @@ const {
   addQuestion,
   deleteQuestion,
   getScorecard,
+  getAllQuestions,
 } = require("../controllers/adminContoller");
 const auth = require("../middlewares/auth");
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get("/scorecard", auth, getScorecard);
 router.post("/logout", auth, logout);
 router.post("/addquestion", auth, addQuestion);
 router.post("/deletequestion", auth, deleteQuestion);
+router.post("/deletequestion", auth, getAllQuestions);
 
 module.exports = router;
