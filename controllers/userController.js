@@ -11,22 +11,22 @@ module.exports.newUser = async (req, res) => {
     }
 
     let allQuestions = await Question.find({});
-    let l1 = allQuestions.filter((el) => el.levelTag == "level1");
+    let level1 = allQuestions.filter((el) => el.levelTag == "level1");
     l1.sort(() => Math.random() - 0.5);
-    let l2 = allQuestions.filter((el) => el.levelTag == "level2");
+    let level2 = allQuestions.filter((el) => el.levelTag == "level2");
     l2.sort(() => Math.random() - 0.5);
-    let l3 = allQuestions.filter((el) => el.levelTag == "level3");
+    let level3 = allQuestions.filter((el) => el.levelTag == "level3");
     l3.sort(() => Math.random() - 0.5);
-    let l4 = allQuestions.filter((el) => el.levelTag == "level4");
+    let level4 = allQuestions.filter((el) => el.levelTag == "level4");
     l4.sort(() => Math.random() - 0.5);
-    let l5 = allQuestions.filter((el) => el.levelTag == "level5");
+    let level5 = allQuestions.filter((el) => el.levelTag == "level5");
     l5.sort(() => Math.random() - 0.5);
     let test = {
-      l1: [l1[0], l1[1]],
-      l2: [l2[0], l2[1]],
-      l3: [l3[0], l3[1]],
-      l4: [l4[0], l4[1]],
-      l5: [l5[0], l5[1]],
+      level1: [level1[0], level1[1]],
+      level2: [level2[0], level2[1]],
+      level3: [level3[0], level3[1]],
+      level4: [level4[0], level4[1]],
+      level5: [level5[0], level5[1]],
     };
     res.status(201).send({ user, test });
   } catch (error) {
