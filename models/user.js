@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
-let { jwtkey } = require("../config.json");
+// let { jwtkey } = require("../config.json");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -54,7 +54,7 @@ const userSchema = mongoose.Schema({
 
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
-  const token = jwt.sign({ _id: user._id }, jwtkey);
+  const token = jwt.sign({ _id: user._id }, process.env.JWTKEY);
   user.token = token;
   await user.save();
   return token;
