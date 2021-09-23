@@ -9,4 +9,5 @@ app.use(express.json());
 app.use("/screening", userRouter);
 app.use("/admin", adminRouter);
 
-app.listen(5000);
+let port = process.env.PORT || 5000
+app.listen(port);
