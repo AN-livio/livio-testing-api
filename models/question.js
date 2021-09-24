@@ -7,10 +7,12 @@ const questionSchema = mongoose.Schema({
   },
   questionImg: {
     type: String,
+    trim: true,
   },
   optionA: {
     type: String,
     required: true,
+    trim: true,
   },
   aImg: {
     type: Boolean,
@@ -19,6 +21,7 @@ const questionSchema = mongoose.Schema({
   optionB: {
     type: String,
     required: true,
+    trim: true,
   },
   bImg: {
     type: Boolean,
@@ -27,6 +30,7 @@ const questionSchema = mongoose.Schema({
   optionC: {
     type: String,
     required: true,
+    trim: true,
   },
   cImg: {
     type: Boolean,
@@ -35,6 +39,7 @@ const questionSchema = mongoose.Schema({
   optionD: {
     type: String,
     required: true,
+    trim: true,
   },
   dImg: {
     type: Boolean,
