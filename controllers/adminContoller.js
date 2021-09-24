@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Question = require("../models/question");
+const JSONtoCSV = require("json2csv").parse;
 
 module.exports.login = async (req, res) => {
   try {
@@ -80,8 +81,10 @@ module.exports.getcsv = async (req, res) => {
       userObj.totalScore = users[x].totalScore;
       formattedUsers.push(userObj);
     }
-
-    res.status(200).send({ users: formattedUsers });
+    let csv = JSONtoCSV(formattedUsers);
+    res.header("Content-Type", "text/csv");
+    res.attachment("result.csv");
+    res.send(csv);
   } catch (error) {
     res.status(400).send(error);
   }
