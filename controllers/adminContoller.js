@@ -59,6 +59,18 @@ module.exports.getAllQuestions = async (req, res) => {
   }
 };
 
+module.exports.getcsv = async (req, res) => {
+  try {
+    let users = await User.find({
+      lastTestDate: { $exists: true },
+      role: "User",
+    });
+    res.status(200).send({ users });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 module.exports.getScorecard = async (req, res) => {
   try {
     let { email, date, score } = req.query;
