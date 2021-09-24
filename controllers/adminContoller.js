@@ -65,7 +65,21 @@ module.exports.getcsv = async (req, res) => {
       lastTestDate: { $exists: true },
       role: "User",
     });
-    res.status(200).send({ users });
+    let formattedUsers = [];
+    for (let x in users) {
+      let userObj = {
+        name: users[x].name,
+        email: users[x].email,
+      };
+
+      for (let y in users[x].individualScore) {
+        userObj[`level ${y + 1}`] = individualScore[y];
+      }
+
+      userObj.totalScore = users[x].totalScore;
+      formattedUsers.push(userObj);
+    }
+    res.status(200).send({ users: formattedUsers });
   } catch (error) {
     res.status(400).send(error);
   }
