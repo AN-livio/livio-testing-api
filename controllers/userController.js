@@ -46,9 +46,7 @@ module.exports.submitTest = async (req, res) => {
     user.individualScore = individualScore;
     user.totalScore = totalScore;
     let date = new Date();
-    user.lastTestDate = `${date.getFullYear()}-${
-      date.getMonth() + 1
-    }-${date.getDate()}`;
+    user.lastTestDate = new Date();
     user.save();
     res.status(201).send({ success: "Test has been submitted" });
   } catch (error) {

@@ -72,6 +72,7 @@ module.exports.getcsv = async (req, res) => {
       let userObj = {
         name: users[x].name,
         email: users[x].email,
+        submission:users[x].lastTestDate
       };
 
       for (let y in users[x].individualScore) {
@@ -90,28 +91,3 @@ module.exports.getcsv = async (req, res) => {
   }
 };
 
-module.exports.getScorecard = async (req, res) => {
-  try {
-    let { email, date, score } = req.query;
-    let users;
-    if (!email && !date) {
-      throw new Error("No query");
-    } else if (date) {
-      if (score) {
-        users = await User.find({
-          lastTestDate: date,
-          totalScore: { $gte: score },
-        });
-      } else {
-        users = await User.find({
-          lastTestDate: date,
-        });
-      }
-    } else if (email) {
-      users = await User.find({ email });
-    }
-    res.status(200).send({ users });
-  } catch (error) {
-    res.status(400).send(error);
-  }
-};
