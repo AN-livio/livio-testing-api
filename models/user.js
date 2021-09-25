@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 // let { jwtkey } = require("../config.json");
+const timeZone = require("mongoose-timezone");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -59,7 +60,7 @@ userSchema.methods.generateAuthToken = async function () {
   await user.save();
   return token;
 };
-
+userSchema.plugin(timeZone, { paths: ["lastTestDate"] });
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
