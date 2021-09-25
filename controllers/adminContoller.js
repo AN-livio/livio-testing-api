@@ -74,7 +74,7 @@ module.exports.getcsv = async (req, res) => {
       let userObj = {
         name: users[x].name,
         email: users[x].email,
-        submission:users[x].lastTestDate
+        submission:users[x].lastTestDate.toLocaleString()
       };
 
       for (let y in users[x].individualScore) {
