@@ -2,7 +2,6 @@ const User = require("../models/user");
 const Question = require("../models/question");
 const JSONtoCSV = require("json2csv").parse;
 
-
 module.exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -70,11 +69,12 @@ module.exports.getcsv = async (req, res) => {
     let formattedUsers = [];
 
     for (let x in users) {
-      
       let userObj = {
         name: users[x].name,
         email: users[x].email,
-        submission:users[x].lastTestDate.toLocaleString()
+        submission: users[x].lastTestDate.toLocaleString("en-US", {
+          timeZone: "Asia/Calcutta",
+        }),
       };
 
       for (let y in users[x].individualScore) {
@@ -92,4 +92,3 @@ module.exports.getcsv = async (req, res) => {
     res.status(400).send(error);
   }
 };
-
