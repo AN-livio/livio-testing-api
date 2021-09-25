@@ -55,6 +55,6 @@ module.exports.submitTest = async (req, res) => {
 
 function getCurrentIndianDateTime(){
   var moment = require('moment-timezone');
-  var time = moment.tz('Asia/Calcutta').format("YYYY-MM-DDTHH:MM:ss");
+  var time = moment.utc("+5:30").format("YYYY-MM-DDTHH:MM:ss");
   return new Date(time);
 }
