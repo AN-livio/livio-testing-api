@@ -45,8 +45,7 @@ module.exports.submitTest = async (req, res) => {
     let user = await User.findOne({ email });
     user.individualScore = individualScore;
     user.totalScore = totalScore;
-    let date = new Date();
-    user.lastTestDate = new Date();
+    user.lastTestDate = new Date().toLocaleString();
     user.save();
     res.status(201).send({ success: "Test has been submitted" });
   } catch (error) {
