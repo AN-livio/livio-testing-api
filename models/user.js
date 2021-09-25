@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema({
     type: String,
   },
   lastTestDate: {
-    type: String,
+    type: Date,
   },
   individualScore: {
     type: Array,
