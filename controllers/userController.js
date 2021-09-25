@@ -45,7 +45,7 @@ module.exports.submitTest = async (req, res) => {
     let user = await User.findOne({ email });
     user.individualScore = individualScore;
     user.totalScore = totalScore;
-    user.lastTestDate = new Date()
+    user.lastTestDate = getCurrentIndianDateTime()
     user.save();
     res.status(201).send({ success: "Test has been submitted" });
   } catch (error) {
@@ -53,9 +53,8 @@ module.exports.submitTest = async (req, res) => {
   }
 };
 
-// function getCurrentIndianDateTime(date){
-//   date = date
-//   var moment = require('moment-timezone');
-//   var time = moment.tz('Asia/Calcutta').format("YYYY-MM-DDTHH:MM:ss");
-//   return new Date(time);
-// }
+function getCurrentIndianDateTime(){
+  var moment = require('moment-timezone');
+  var time = moment.tz('Asia/Calcutta').format("YYYY-MM-DDTHH:MM:ss");
+  return new Date(time);
+}
