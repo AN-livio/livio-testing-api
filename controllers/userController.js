@@ -45,10 +45,17 @@ module.exports.submitTest = async (req, res) => {
     let user = await User.findOne({ email });
     user.individualScore = individualScore;
     user.totalScore = totalScore;
-    user.lastTestDate = new Date().toLocaleString();
+    user.lastTestDate = new Date()
     user.save();
     res.status(201).send({ success: "Test has been submitted" });
   } catch (error) {
     res.status(400).send(error);
   }
 };
+
+// function getCurrentIndianDateTime(date){
+//   date = date
+//   var moment = require('moment-timezone');
+//   var time = moment.tz('Asia/Calcutta').format("YYYY-MM-DDTHH:MM:ss");
+//   return new Date(time);
+// }
