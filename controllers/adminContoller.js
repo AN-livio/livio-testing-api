@@ -78,7 +78,9 @@ module.exports.getcsv = async (req, res) => {
       };
 
       for (let y in users[x].individualScore) {
-        userObj[`level ${Number(y) + 1}`] = users[x].individualScore[y];
+        userObj[`level ${Number(y) + 1}`] = `${
+          users[x].individualScore[y] * (Number(y) + 1)
+        }/${2 * (Number(y) + 1)}`;
       }
 
       userObj.totalScore = users[x].totalScore;
