@@ -60,7 +60,7 @@ module.exports.submitTest = async (req, res) => {
     }
 
     mail(
-      "anirudh@golivio.com",
+      "ishwari@golivio.com",
       "info@golivio.com",
       "Livio Screening Report",
       `<h3>Email: ${email}</h3><hr>${emailScoreString}<br>Total Score: ${totalScoreForEmail} / 30 <hr> <br> Submitted On: ${user.lastTestDate.toLocaleString(
