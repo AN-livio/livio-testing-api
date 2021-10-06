@@ -53,9 +53,9 @@ module.exports.submitTest = async (req, res) => {
     let emailScoreString = "";
     let totalScoreForEmail = 0;
     for (let y in user.individualScore) {
-      emailScoreString += `${user.individualScore[y] * (Number(y) + 1)}/${
-        2 * (Number(y) + 1)
-      }<br>`;
+      emailScoreString += `Level ${Number(y) + 1}: ${
+        user.individualScore[y] * (Number(y) + 1)
+      }/${2 * (Number(y) + 1)}<br>`;
       totalScoreForEmail += user.individualScore[y] * (Number(y) + 1);
     }
 
@@ -63,7 +63,7 @@ module.exports.submitTest = async (req, res) => {
       "anirudh@golivio.com",
       "info@golivio.com",
       "Livio Screening Report",
-      `<b>${email}</b><br><hr>${emailScoreString}<br>Total Score:${totalScoreForEmail} / 30 <br> Submitted On: ${user.lastTestDate.toLocaleString(
+      `<h3>Email: ${email}</h3><br><hr>${emailScoreString}<br>Total Score: ${totalScoreForEmail} / 30 <hr> <br> Submitted On: ${user.lastTestDate.toLocaleString(
         "en-US",
         {
           timeZone: "Asia/Calcutta",
