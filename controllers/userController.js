@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Question = require("../models/question");
+const mail = require("../utils/mailUtility");
 
 module.exports.newUser = async (req, res) => {
   try {
@@ -39,17 +40,38 @@ module.exports.newUser = async (req, res) => {
   }
 };
 
+//we are saving 1 unit score for each question in database and using controller can adjust their weights
 module.exports.submitTest = async (req, res) => {
   try {
     let { email, totalScore, individualScore } = req.body;
     let user = await User.findOne({ email });
     user.individualScore = individualScore;
     user.totalScore = totalScore;
-    user.lastTestDate = new Date()
+    user.lastTestDate = new Date();
     user.save();
+
+    let emailScoreString = "";
+    let totalScoreForEmail = 0;
+    for (let y in user.individualScore) {
+      emailScoreString += `${user.individualScore[y] * (Number(y) + 1)}/${
+        2 * (Number(y) + 1)
+      }<br>`;
+      totalScoreForEmail += user.individualScore[y] * (Number(y) + 1);
+    }
+
+    mail(
+      "anirudh@golivio.com",
+      "info@golivio.com",
+      "Livio Screening Report",
+      `<b>${email}</b><br><hr>${emailScoreString}<br>Total Score:${totalScoreForEmail} / 30 <br> Submitted On: ${user.lastTestDate.toLocaleString(
+        "en-US",
+        {
+          timeZone: "Asia/Calcutta",
+        }
+      )}`
+    );
     res.status(201).send({ success: "Test has been submitted" });
   } catch (error) {
     res.status(400).send(error);
   }
 };
-

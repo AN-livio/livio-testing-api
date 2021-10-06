@@ -17,6 +17,8 @@
     "moment-timezone": "^0.5.33",
     "mongodb": "^4.1.2",
     "mongoose": "^6.0.7",
+    "nodemailer": "^6.6.5",
+    "nodemailer-mandrill-transport": "^1.2.0",
     "validator": "^13.6.0"
   },
   "engines": {
