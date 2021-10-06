@@ -53,9 +53,9 @@ module.exports.submitTest = async (req, res) => {
     let emailScoreString = "";
     let totalScoreForEmail = 0;
     for (let y in user.individualScore) {
-      emailScoreString += `<h4>Level ${Number(y) + 1}: ${
+      emailScoreString += `<b>Level ${Number(y) + 1}: ${
         user.individualScore[y] * (Number(y) + 1)
-      } / ${2 * (Number(y) + 1)}</h4><br>`;
+      } / ${2 * (Number(y) + 1)}</b><br>`;
       totalScoreForEmail += user.individualScore[y] * (Number(y) + 1);
     }
 
