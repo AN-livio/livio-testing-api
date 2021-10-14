@@ -43,7 +43,7 @@ module.exports.newUser = async (req, res) => {
 //we are saving 1 unit score for each question in database and using controller can adjust their weights
 module.exports.submitTest = async (req, res) => {
   try {
-    let { email, totalScore, individualScore } = req.body;
+    let { email, totalScore, individualScore, hiringManagerMail } = req.body;
     let user = await User.findOne({ email });
     user.individualScore = individualScore;
     user.totalScore = totalScore;
@@ -70,6 +70,20 @@ module.exports.submitTest = async (req, res) => {
         }
       )}`
     );
+
+    if (hiringManagerMail) {
+      mail(
+       hiringManagerMail,
+        "info@golivio.com",
+        "Livio Screening Report",
+        `<h3>Email: ${email}</h3><hr>${emailScoreString}<br>Total Score: ${totalScoreForEmail} / 30 <hr> <br> Submitted On: ${user.lastTestDate.toLocaleString(
+          "en-US",
+          {
+            timeZone: "Asia/Calcutta",
+          }
+        )}`
+      );
+    }
     res.status(201).send({ success: "Test has been submitted" });
   } catch (error) {
     res.status(400).send(error);
