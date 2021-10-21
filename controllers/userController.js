@@ -19,7 +19,7 @@ module.exports.newUser = async (req, res) => {
       email,
       "info@golivio.com",
       "Email Verification - Screening Test",
-      `Enter the following otp: <br/> ${otp}`
+      `Enter the following security code: <br/> ${otp}`
     );
 
     let allQuestions = await Question.find({});
