@@ -9,7 +9,10 @@ module.exports.newUser = async (req, res) => {
     const { email } = req.body;
     let user = await User.findOne({ email });
     if (!user) {
-      user = new User(req.body);
+      let object = req.body;
+      if (!object.college) object.college = "NA";
+      user = new User(object);
+
       await user.save();
     }
 
@@ -45,7 +48,7 @@ module.exports.newUser = async (req, res) => {
       level5[0],
       level5[1],
     ];
-    res.status(201).send({ user, test,otp });
+    res.status(201).send({ user, test, otp });
   } catch (error) {
     res.status(400).send(error);
   }
