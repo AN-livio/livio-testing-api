@@ -45,7 +45,7 @@ module.exports.newUser = async (req, res) => {
       level5[0],
       level5[1],
     ];
-    res.status(201).send({ user, test });
+    res.status(201).send({ user, test,otp });
   } catch (error) {
     res.status(400).send(error);
   }
