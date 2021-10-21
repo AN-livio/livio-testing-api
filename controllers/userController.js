@@ -1,3 +1,5 @@
+const otpGenerator = require("otp-generator");
+
 const User = require("../models/user");
 const Question = require("../models/question");
 const mail = require("../utils/mailUtility");
@@ -10,6 +12,15 @@ module.exports.newUser = async (req, res) => {
       user = new User(req.body);
       await user.save();
     }
+
+    let otp = otpGenerator.generate(6);
+
+    mail(
+      email,
+      "info@golivio.com",
+      "Email Verification - Screening Test",
+      `Enter the following otp: <br/> ${otp}`
+    );
 
     let allQuestions = await Question.find({});
     let level1 = allQuestions.filter((el) => el.levelTag == "level1");

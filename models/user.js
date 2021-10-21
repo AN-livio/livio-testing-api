@@ -23,6 +23,7 @@ const userSchema = mongoose.Schema({
   college: {
     type: String,
     required: true,
+    default: "NA",
     trim: true,
   },
   role: {

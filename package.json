@@ -19,6 +19,7 @@
     "mongoose": "^6.0.7",
     "nodemailer": "^6.6.5",
     "nodemailer-mandrill-transport": "^1.2.0",
+    "otp-generator": "^3.0.0",
     "validator": "^13.6.0"
   },
   "engines": {
