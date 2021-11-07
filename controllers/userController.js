@@ -3,6 +3,7 @@ const otpGenerator = require("otp-generator");
 const User = require("../models/user");
 const Question = require("../models/question");
 const mail = require("../utils/mailUtility");
+const { generateUploadURL } = require("../utils/s3");
 
 module.exports.newUser = async (req, res) => {
   try {
@@ -98,7 +99,8 @@ module.exports.submitTest = async (req, res) => {
         )}`
       );
     }
-    res.status(201).send({ success: "Test has been submitted" });
+    const url = await generateUploadURL();
+    res.status(201).send({ success: "Test has been submitted", url });
   } catch (error) {
     res.status(400).send(error);
   }
