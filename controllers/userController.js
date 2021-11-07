@@ -105,3 +105,31 @@ module.exports.submitTest = async (req, res) => {
     res.status(400).send(error);
   }
 };
+
+module.exports.submitResume = async (req, res) => {
+  try {
+    const { email, name, resumeURL, hiringManagerEmail } = req.body;
+    let user = await User.findOne({ email });
+    if (!user) {
+      throw new Error("No user found!");
+    }
+
+    mail(
+      "ishwari@golivio.com",
+      "info@golivio.com",
+      `Resume - ${name} - ${email}`,
+      `Candidate Resume: <br/> ${resumeURL}`
+    );
+
+    mail(
+      hiringManagerEmail,
+      "info@golivio.com",
+      `Resume - ${name} - ${email}`,
+      `Candidate Resume: <br/> ${resumeURL}`
+    );
+
+    res.status(201).send({ success: "Resume saved successfully!" });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
