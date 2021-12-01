@@ -64,8 +64,8 @@ module.exports.modifyQuestion = async (req, res) => {
   try {
     let { id } = req.body;
     delete req.body.id;
-    let question = await Question.findOneAndUpdate(id, req.body);
-    res.status(200).send({ question, msg: "success" });
+    await Question.findOneAndUpdate(id, req.body);
+    res.status(200).send({ msg: "success" });
   } catch (error) {
     res.status(400).send(error);
   }
