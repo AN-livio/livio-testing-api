@@ -62,9 +62,10 @@ module.exports.getAllQuestions = async (req, res) => {
 
 module.exports.getQuestion = async (req, res) => {
   try {
-    let question = await Question.findById(req.body._id);
-    let s = req.body._id + "some ";
-    res.status(200).send({ question, change: "yes", s });
+    let { id } = req.body;
+    let question = await Question.findById(id);
+    let s = id + "some ";
+    res.status(200).send({ question, s });
   } catch (error) {
     res.status(400).send(error);
   }
