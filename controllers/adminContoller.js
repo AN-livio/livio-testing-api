@@ -60,6 +60,15 @@ module.exports.getAllQuestions = async (req, res) => {
   }
 };
 
+module.exports.getQuestion = async (req, res) => {
+  try {
+    let question = await Question.find({ _id: req.body._id });
+    res.status(200).send({ question });
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 module.exports.getcsv = async (req, res) => {
   try {
     let users = await User.find({
