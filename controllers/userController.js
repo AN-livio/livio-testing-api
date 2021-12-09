@@ -117,14 +117,14 @@ module.exports.submitResume = async (req, res) => {
     mail(
       "ishwari@golivio.com",
       "info@golivio.com",
-      `${name} - ${jobPost}`,
+      `${name} - ${email} - ${jobPost}`,
       `Candidate Resume: <br/> ${resumeURL}`
     );
 
     mail(
       hiringManagerEmail,
       "info@golivio.com",
-      `${name} - ${jobPost}`,
+      `${name} - ${email} - ${jobPost}`,
       `Candidate Resume: <br/> ${resumeURL}`
     );
 
