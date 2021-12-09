@@ -108,7 +108,7 @@ module.exports.submitTest = async (req, res) => {
 
 module.exports.submitResume = async (req, res) => {
   try {
-    const { email, name, resumeURL, hiringManagerEmail } = req.body;
+    const { email, name, resumeURL, hiringManagerEmail,jobPost } = req.body;
     let user = await User.findOne({ email });
     if (!user) {
       throw new Error("No user found!");
@@ -117,14 +117,14 @@ module.exports.submitResume = async (req, res) => {
     mail(
       "ishwari@golivio.com",
       "info@golivio.com",
-      `Resume - ${name} - ${email}`,
+      `Resume - ${name} - ${email} - ${jobPost}`,
       `Candidate Resume: <br/> ${resumeURL}`
     );
 
     mail(
       hiringManagerEmail,
       "info@golivio.com",
-      `Resume - ${name} - ${email}`,
+      `Resume - ${name} - ${email} - ${jobPost}`,
       `Candidate Resume: <br/> ${resumeURL}`
     );
 
