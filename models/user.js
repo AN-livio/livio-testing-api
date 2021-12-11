@@ -34,19 +34,19 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    default: "0",
+    default: "NA",
   },
   workStatus: {
     type: String,
     required: true,
     trim: true,
-    default: "Currently Working",
+    default: "NA",
   },
   highestDegree: {
     type: String,
     required: true,
     trim: true,
-    default: "Diploma",
+    default: "NA",
   },
   phone: {
     type: Number,
