@@ -120,9 +120,9 @@ module.exports.submitResume = async (req, res) => {
       `${name} - ${email} - ${jobPost}`,
       `Candidate Resume: <br/> ${resumeURL} <br/> <hr> 
       <ul>
-      <li>Experience:${user.exp}</li>
-      <li>Working Status:${user.workStatus}</li>
-      <li>Highest Degree:${user.highestDegree}</li>
+      <li>Experience: ${user.exp}</li>
+      <li>Working Status: ${user.workStatus}</li>
+      <li>Highest Degree: ${user.highestDegree}</li>
       </ul>`
     );
 
@@ -132,9 +132,9 @@ module.exports.submitResume = async (req, res) => {
       `${name} - ${email} - ${jobPost}`,
       `Candidate Resume: <br/> ${resumeURL} <br/> <hr> 
       <ul>
-      <li>Experience:${user.exp}</li>
-      <li>Working Status:${user.workStatus}</li>
-      <li>Highest Degree:${user.highestDegree}</li>
+      <li>Experience: ${user.exp}</li>
+      <li>Working Status: ${user.workStatus}</li>
+      <li>Highest Degree: ${user.highestDegree}</li>
       </ul>`
     );
 
