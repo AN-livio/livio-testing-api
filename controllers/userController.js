@@ -118,14 +118,24 @@ module.exports.submitResume = async (req, res) => {
       "ishwari@golivio.com",
       "info@golivio.com",
       `${name} - ${email} - ${jobPost}`,
-      `Candidate Resume: <br/> ${resumeURL}`
+      `Candidate Resume: <br/> ${resumeURL} <br/> <hr> 
+      <ul>
+      <li>Experience:${user.exp}</li>
+      <li>Working Status:${user.workStatus}</li>
+      <li>Highest Degree:${user.highestDegree}</li>
+      </ul>`
     );
 
     mail(
       hiringManagerEmail,
       "info@golivio.com",
       `${name} - ${email} - ${jobPost}`,
-      `Candidate Resume: <br/> ${resumeURL}`
+      `Candidate Resume: <br/> ${resumeURL} <br/> <hr> 
+      <ul>
+      <li>Experience:${user.exp}</li>
+      <li>Working Status:${user.workStatus}</li>
+      <li>Highest Degree:${user.highestDegree}</li>
+      </ul>`
     );
 
     res.status(201).send({ success: "Resume saved successfully!" });
