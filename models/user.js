@@ -30,6 +30,12 @@ const userSchema = mongoose.Schema({
     required: true,
     default: "User",
   },
+  resumeURL: {
+    type: String,
+    required: true,
+    trim: true,
+    default: "NA",
+  },
   exp: {
     type: String,
     required: true,

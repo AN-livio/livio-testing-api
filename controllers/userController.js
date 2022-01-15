@@ -114,6 +114,9 @@ module.exports.submitResume = async (req, res) => {
       throw new Error("No user found!");
     }
 
+    user.resumeURL = resumeURL
+    user.save()
+
     mail(
       "ishwari@golivio.com",
       "info@golivio.com",
