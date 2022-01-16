@@ -113,9 +113,9 @@ module.exports.submitResume = async (req, res) => {
     if (!user) {
       throw new Error("No user found!");
     }
-    user.appliedFor = jobPost
-    user.resumeURL = resumeURL
-    await user.save()
+    user.appliedFor = jobPost;
+    user.resumeURL = resumeURL;
+    await user.save();
 
     mail(
       "ishwari@golivio.com",
@@ -143,6 +143,7 @@ module.exports.submitResume = async (req, res) => {
 
     res.status(201).send({ success: "Resume saved successfully!" });
   } catch (error) {
+    console.log(error.message);
     res.status(400).send(error);
   }
 };
