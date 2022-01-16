@@ -36,6 +36,12 @@ const userSchema = mongoose.Schema({
     trim: true,
     default: "NA",
   },
+  appliedFor: {
+    type: String,
+    required: true,
+    trim: true,
+    default: "NA",
+  },
   exp: {
     type: String,
     required: true,
