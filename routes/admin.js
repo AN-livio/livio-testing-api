@@ -9,6 +9,7 @@ const {
   getcsv,
   getQuestion,
   modifyQuestion,
+  getCandidates
 } = require("../controllers/adminContoller");
 const auth = require("../middlewares/auth");
 const router = express.Router();

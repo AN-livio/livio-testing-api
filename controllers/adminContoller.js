@@ -121,8 +121,8 @@ module.exports.getcsv = async (req, res) => {
 
 module.exports.getCandidates = async (req, res) => {
   try {
-    // let users = await User.find({});
-    // users = users.filter((user) => user.role != "Admin");
+    let users = await User.find({});
+    users = users.filter((user) => user.role != "Admin");
     res.status(200).send({ users:[] });
   } catch (error) {
     res.status(400).send(error);
