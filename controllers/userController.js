@@ -113,8 +113,10 @@ module.exports.submitResume = async (req, res) => {
     if (!user) {
       throw new Error("No user found!");
     }
-    user["appliedFor"] = jobPost;
-    user.resumeURL = resumeURL;
+    if (jobPost) {
+      user["appliedFor"] = jobPost;
+    }
+    if (resumeURL) user.resumeURL = resumeURL;
     await user.save();
 
     mail(
