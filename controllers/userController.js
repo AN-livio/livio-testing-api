@@ -115,7 +115,7 @@ module.exports.submitResume = async (req, res) => {
     }
     user.appliedFor = jobPost
     user.resumeURL = resumeURL
-    user.save()
+    await user.save()
 
     mail(
       "ishwari@golivio.com",
