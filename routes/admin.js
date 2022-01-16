@@ -21,5 +21,6 @@ router.post("/modifyquestion", auth, modifyQuestion);
 router.get("/getquestions", auth, getAllQuestions);
 router.get("/getcsv", auth, getcsv);
 router.get("/getq", auth, getQuestion);
+router.get("/getallcandidates",auth,getCandidates)
 
 module.exports = router;
