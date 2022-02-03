@@ -15,6 +15,17 @@ module.exports.newUser = async (req, res) => {
       user = new User(object);
 
       await user.save();
+    } else {
+      if (
+        new Date() <
+        new Date(
+          new Date(user.lastTestDate).getTime() + 30 * 24 * 60 * 60 * 1000
+        )
+      ) {
+        return res
+          .status(201)
+          .send({ msg: "Please wait for 30 days to give the test again." });
+      }
     }
 
     let otp = otpGenerator.generate(6);
