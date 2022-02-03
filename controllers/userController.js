@@ -58,11 +58,15 @@ module.exports.newUser = async (req, res) => {
 //we are saving 1 unit score for each question in database and using controller can adjust their weights
 module.exports.submitTest = async (req, res) => {
   try {
-    let { email, totalScore, individualScore, hiringManagerEmail } = req.body;
+    let { email, totalScore, individualScore, hiringManagerEmail, jobPost } =
+      req.body;
     let user = await User.findOne({ email });
     user.individualScore = individualScore;
     user.totalScore = totalScore;
     user.lastTestDate = new Date();
+    if (jobPost) {
+      user["appliedFor"] = jobPost;
+    }
     user.save();
 
     let emailScoreString = "";
@@ -108,14 +112,12 @@ module.exports.submitTest = async (req, res) => {
 
 module.exports.submitResume = async (req, res) => {
   try {
-    const { email, name, resumeURL, hiringManagerEmail, jobPost } = req.body;
+    const { email, name, resumeURL, hiringManagerEmail } = req.body;
     let user = await User.findOne({ email });
     if (!user) {
       throw new Error("No user found!");
     }
-    if (jobPost) {
-      user["appliedFor"] = jobPost;
-    }
+
     if (resumeURL) user.resumeURL = resumeURL;
     await user.save();
 
