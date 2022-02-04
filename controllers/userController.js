@@ -76,7 +76,11 @@ module.exports.submitTest = async (req, res) => {
     user.totalScore = totalScore;
     user.lastTestDate = new Date();
     if (jobPost) {
-      user["appliedFor"] = jobPost;
+      if (user["appliedFor"]) {
+        user["appliedFor"] = `${user["appliedFor"]}+${jobPost}`;
+      } else {
+        user["appliedFor"] = jobPost;
+      }
     }
     user.save();
 
