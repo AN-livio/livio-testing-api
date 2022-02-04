@@ -76,7 +76,9 @@ module.exports.submitTest = async (req, res) => {
     user.totalScore = totalScore;
     user.lastTestDate = new Date();
     if (jobPost) {
-      if (user["appliedFor"]) {
+      // Whose appliedFor does not exist has a default value of NA by mongoose 
+      // as we set up this in model
+      if (user["appliedFor"] == "NA") {
         user["appliedFor"] = `${user["appliedFor"]}+${jobPost}`;
       } else {
         user["appliedFor"] = jobPost;
