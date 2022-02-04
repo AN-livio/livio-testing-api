@@ -7,7 +7,7 @@ const { generateUploadURL } = require("../utils/s3");
 
 module.exports.newUser = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, jobPost } = req.body;
     let user = await User.findOne({ email });
     if (!user) {
       let object = req.body;
@@ -22,6 +22,14 @@ module.exports.newUser = async (req, res) => {
           new Date(user.lastTestDate).getTime() + 30 * 24 * 60 * 60 * 1000
         )
       ) {
+        if (jobPost) {
+          if (user["appliedFor"] != "NA") {
+            user["appliedFor"] = `${user["appliedFor"]}+${jobPost}`;
+          } else {
+            user["appliedFor"] = jobPost;
+          }
+        }
+        user.save();
         return res
           .status(201)
           .send({ msg: "Please wait for 30 days to give the test again." });
@@ -76,7 +84,7 @@ module.exports.submitTest = async (req, res) => {
     user.totalScore = totalScore;
     user.lastTestDate = new Date();
     if (jobPost) {
-      // Whose appliedFor does not exist has a default value of NA by mongoose 
+      // Whose appliedFor does not exist has a default value of NA by mongoose
       // as we set up this in model
       if (user["appliedFor"] != "NA") {
         user["appliedFor"] = `${user["appliedFor"]}+${jobPost}`;
