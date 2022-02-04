@@ -78,7 +78,7 @@ module.exports.submitTest = async (req, res) => {
     if (jobPost) {
       // Whose appliedFor does not exist has a default value of NA by mongoose 
       // as we set up this in model
-      if (user["appliedFor"] == "NA") {
+      if (user["appliedFor"] != "NA") {
         user["appliedFor"] = `${user["appliedFor"]}+${jobPost}`;
       } else {
         user["appliedFor"] = jobPost;
